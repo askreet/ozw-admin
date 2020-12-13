@@ -22,10 +22,10 @@ public:
 	void setModel(QAbstractItemModel *model);
 	QModelIndex currentIndex();
 	QItemSelectionModel *selectionModel();
-Q_SIGNALS:
+signals:
 	void currentRowChanged(const QModelIndex &current, const QModelIndex &previous);
     void refreshNodeInfo(const quint8 node);
-public Q_SLOTS:
+public slots:
     void rightClickMenu(QPoint pos);
 private slots:
 	void resizeContents();

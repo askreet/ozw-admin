@@ -21,7 +21,7 @@ OZWCore *OZWCore::get() {
 }
 
 
-void OZWCore::initilize() {
+void OZWCore::initialize() {
 	m_configpath = QFileInfo(QSettings().value("openzwave/ConfigPath").toString()).absoluteFilePath();
 	m_userpath = QFileInfo(QSettings().value("openzwave/UserPath").toString()).absoluteFilePath();
     this->m_openzwave = new QTOpenZwave(this, m_configpath, m_userpath);

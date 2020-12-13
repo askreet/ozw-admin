@@ -32,7 +32,7 @@ class SettingsManager : public QObject
         void setRetriveLogBuffer(bool value);
 
     Q_SIGNALS:
-        void networkCacheChanged(int size);
+        void networkCacheChanged(quint32 size);
         void logBufferSizeChanged(quint32 size);
         void retriveLogBufferChanged(bool value);
         
@@ -47,7 +47,7 @@ class OZWCore : public QObject
 public:
     explicit OZWCore(QObject *parent = nullptr);
     static OZWCore *get();
-    void initilize();
+    void initialize();
     QTOpenZwave *getQTOZW();
     QTOZWManager *getQTOZWManager();
     SettingsManager settings;

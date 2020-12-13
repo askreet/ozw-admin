@@ -204,6 +204,9 @@
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="1" column="2">
        <widget class="QCheckBox" name="ni_security">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="toolTip">
          <string>This is not S0/S2 Security. </string>
         </property>
@@ -216,6 +219,9 @@
        <widget class="QCheckBox" name="ni_zwplus">
         <property name="enabled">
          <bool>true</bool>
+        </property>
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
         </property>
         <property name="text">
          <string>ZWave Plus</string>
@@ -234,6 +240,9 @@
       </item>
       <item row="0" column="2">
        <widget class="QCheckBox" name="ni_flirs">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>FLiRS</string>
         </property>
@@ -241,6 +250,9 @@
       </item>
       <item row="0" column="1">
        <widget class="QCheckBox" name="ni_listen">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>Listening</string>
         </property>
@@ -248,6 +260,9 @@
       </item>
       <item row="1" column="0">
        <widget class="QCheckBox" name="ni_beaming">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>Beaming</string>
         </property>
@@ -255,6 +270,9 @@
       </item>
       <item row="1" column="1">
        <widget class="QCheckBox" name="ni_routing">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>Routing</string>
         </property>

@@ -5,23 +5,19 @@
 #include "ui_deviceinfo.h"
 
 
-void SetReadOnly(QCheckBox* checkBox, bool readOnly)
-{
-	checkBox->setAttribute(Qt::WA_TransparentForMouseEvents, readOnly);
-	checkBox->setFocusPolicy(readOnly ? Qt::NoFocus : Qt::StrongFocus);
-}
-
 DeviceInfo::DeviceInfo(QWidget *parent) :
 	QWidget(parent),
 	ui(new Ui::DeviceInfo)
 {
     ui->setupUi(this);
-	SetReadOnly(this->ui->ni_flirs, true);
-	SetReadOnly(this->ui->ni_listen, true);
-	SetReadOnly(this->ui->ni_zwplus, true);
-	SetReadOnly(this->ui->ni_beaming, true);
-	SetReadOnly(this->ui->ni_routing, true);
-	SetReadOnly(this->ui->ni_security, true);
+
+    this->ui->ni_flirs->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+    this->ui->ni_listen->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+    this->ui->ni_zwplus->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+    this->ui->ni_beaming->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+    this->ui->ni_routing->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+    this->ui->ni_security->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+
 	connect(this->ui->md_helpwindow, &QPushButton::clicked, this, &DeviceInfo::openMetaDataWindow);
 }
 
@@ -32,7 +28,6 @@ DeviceInfo::~DeviceInfo()
 
 void DeviceInfo::setQTOZWManager(QTOZWManager *manager) {
 	this->m_qtozwmanager = manager;
-
 }
 
 
