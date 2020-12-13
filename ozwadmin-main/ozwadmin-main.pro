@@ -47,6 +47,7 @@ SOURCES += main.cpp\
     nodestatus.cpp \
     nodetablewidget.cpp \
     ozwcore.cpp \
+    pollingconfig.cpp \
     splashdialog.cpp \
     startup.cpp \
     startupprogress.cpp \
@@ -64,6 +65,7 @@ HEADERS  += mainwindow.h \
     nodestatus.h \
     nodetablewidget.h \
     ozwcore.h \
+    pollingconfig.h \
     splashdialog.h \
     startup.h \
     startupprogress.h \
@@ -79,6 +81,7 @@ FORMS    += mainwindow.ui \
     metadatawindow.ui \
     nodestatus.ui \
     nodetablewidget.ui \
+    pollingconfig.ui \
     splashdialog.ui \
     startup.ui \
     startupprogress.ui

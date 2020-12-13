@@ -44,6 +44,7 @@
 #include "qt-ads/DockAreaWidget.h"
 #include "ozwcore.h"
 #include "eventwindow.h"
+#include "pollingconfig.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -74,6 +75,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(ui->action_AddNode, SIGNAL(triggered()), this, SLOT(addNode()));
 	connect(ui->action_Delete_Node, SIGNAL(triggered()), this, SLOT(delNode()));
 	connect(ui->action_Heal_Network, SIGNAL(triggered()), this, SLOT(healNetwork()));
+    connect(ui->action_Polling_Config, SIGNAL(triggered()), this, SLOT(openPollingConfiguration()));
 	connect(this->sbMsg, &statusBarMessages::newMessage, this, &MainWindow::setStatusBarMsg);
 	connect(OZWCore::get()->getQTOZWManager(), &QTOZWManager::remoteConnectionStatus, this, &MainWindow::remoteConnectionStatus);
 	connect(OZWCore::get()->getQTOZWManager(), &QTOZWManager::readyChanged, this, &MainWindow::QTOZW_Ready);
@@ -99,21 +101,22 @@ void MainWindow::QTOZW_Ready(bool ready) {
     /* apply our Local Configuration Options to the OZW Options Class */
 	
     QSettings settings;
-	settings.beginGroup("openzwave");
+    settings.beginGroup("openzwave");
     QStringList optionlist = settings.allKeys();
-    for (int i = 0; i < optionlist.size(); i++) {
-        qCDebug(ozwadmin) << "Updating Option " << optionlist.at(i) << " to " << settings.value(optionlist.at(i));
+
+    for (auto& option : optionlist) {
+        qCDebug(ozwadmin) << "Updating Option " << option << " to " << settings.value(option);
         QTOZWOptions *ozwoptions = OZWCore::get()->getQTOZWManager()->getOptions();
-        QStringList listtypes;
-        listtypes << "SaveLogLevel" << "QueueLogLevel" << "DumpLogLevel";
-        if (listtypes.contains(optionlist.at(i))) {
-            OptionList list = ozwoptions->property(optionlist.at(i).toLocal8Bit()).value<OptionList>();
-            if (list.getEnums().size() > 0)
-                list.setSelected(settings.value(optionlist.at(i)).toString());
+        QStringList listtypes {"SaveLogLevel", "QueueLogLevel", "DumpLogLevel"};
+
+        if (listtypes.contains(option)) {
+            OptionList list = ozwoptions->property(option.toLocal8Bit()).value<OptionList>();
+
+                list.setSelected(settings.value(option).toString());
         }
         else
         {
-            ozwoptions->setProperty(optionlist.at(i).toLocal8Bit(), settings.value(optionlist.at(i)));
+            ozwoptions->setProperty(option.toLocal8Bit(), settings.value(option));
         }
     }
     settings.endGroup();
@@ -273,6 +276,11 @@ void MainWindow::CloseConnection() {
 	this->connected(false);
 }
 
+void MainWindow::openPollingConfiguration() {
+    PollingConfig *dialog = new PollingConfig(this);
+    dialog->show();
+}
+
 
 
 void MainWindow::resizeColumns() {
@@ -344,7 +352,8 @@ void MainWindow::connected(bool connected) {
     this->ui->action_Close->setEnabled(connected);
 	this->ui->action_AddNode->setEnabled(connected);
 	this->ui->action_Delete_Node->setEnabled(connected);
-	this->ui->action_Heal_Network->setEnabled(connected);
+    this->ui->action_Heal_Network->setEnabled(connected);
+    this->ui->action_Polling_Config->setEnabled(connected);
 }
 
 void MainWindow::setStatusBarMsg(QString Msg) {

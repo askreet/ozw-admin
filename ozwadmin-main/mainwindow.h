@@ -56,6 +56,7 @@ public slots:
     void addNode();
     void delNode();
     void healNetwork();
+    void openPollingConfiguration();
     void setStatusBarMsg(QString);
     void remoteConnectionStatus(QTOZWManager::connectionStatus status, QAbstractSocket::SocketError error);  
 private slots:

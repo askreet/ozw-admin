@@ -3,6 +3,7 @@
 #include "nodestatus.h"
 #include "ui_nodestatus.h"
 #include "ozwcore.h"
+#include "util.h"
 
 NodeStatus::NodeStatus(QWidget *parent) :
     QWidget(parent),
